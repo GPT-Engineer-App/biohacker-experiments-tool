@@ -1,17 +1,30 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Home } from "lucide-react";
+import { Home, UserPlus, FlaskConical } from "lucide-react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Layout from "./layouts/default"; // available: default, navbar, sidebar
+import Layout from "./layouts/sidebar";
 import Index from "./pages/Index.jsx";
+import SignUp from "./pages/SignUp.jsx";
+import Experiments from "./pages/Experiments.jsx";
+
 const queryClient = new QueryClient();
 
 export const navItems = [
   {
-    title: "Home", // Feel free to change this to your liking
+    title: "Home",
     to: "/",
     icon: <Home className="h-4 w-4" />,
+  },
+  {
+    title: "Sign Up",
+    to: "/signup",
+    icon: <UserPlus className="h-4 w-4" />,
+  },
+  {
+    title: "Experiments",
+    to: "/experiments",
+    icon: <FlaskConical className="h-4 w-4" />,
   },
 ];
 
@@ -24,7 +37,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
-              {/* Add more routes here as needed */}
+              <Route path="signup" element={<SignUp />} />
+              <Route path="experiments" element={<Experiments />} />
             </Route>
           </Routes>
         </Router>
